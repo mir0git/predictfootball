@@ -60,6 +60,8 @@ if uploaded_file:
             moy_ext = round(data["Buts_Ext"].mean(), 2)
             med_ext = round(data["Buts_Ext"].median(), 2)
 
+            both_score_pct = round(len(data[(data["Buts_Dom"] > 0) & (data["Buts_Ext"] > 0)]) / total * 100, 2)
+
             st.subheader(f"📊 {total} matchs trouvés pour cette configuration")
             st.metric("Victoire domicile", f"{pct('1')}%")
             st.metric("Match nul", f"{pct('N')}%")
@@ -70,6 +72,7 @@ if uploaded_file:
             st.write(f"Over 2.5 buts : **{over_2_5}%**")
             st.write(f"Under 2.5 buts : **{round(100 - over_2_5, 2)}%**")
             st.write(f"Over 1.5 buts : **{over_1_5}%**")
+            st.write(f"Les deux équipes marquent : **{both_score_pct}%**")
 
             st.markdown("---")
             st.subheader("📌 Moyennes & Médianes par équipe")
